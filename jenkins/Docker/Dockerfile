@@ -1,6 +1,6 @@
 FROM electronuserland/builder:wine
 
-RUN apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf
+RUN apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake
 
 # VOLUME ["/appDir"]
 
