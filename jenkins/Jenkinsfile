@@ -11,6 +11,7 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'npm run printenv'
                 sh 'rm -rf node_modules'
                 sh 'npm install' 
                 sh 'npm run build:electron:linux'

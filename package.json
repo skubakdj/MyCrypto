@@ -135,6 +135,7 @@
     "what-input": "5.0.5"
   },
   "scripts": {
+    "printenv": "node ./jenkins/test",
     "freezer": "webpack --config=./webpack_config/webpack.freezer.js && node ./dist/freezer.js",
     "freezer:validate": "npm run freezer -- --validate",
     "db": "nodemon ./db",
