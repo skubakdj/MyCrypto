@@ -7,6 +7,9 @@ pipeline {
     }
     stages {
         stage('Build') { 
+            environment {
+                ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
+            }
             steps {
                 sh 'rm -rf node_modules'
                 sh 'npm install' 
