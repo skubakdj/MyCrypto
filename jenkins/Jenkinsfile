@@ -6,9 +6,11 @@ pipeline {
         }
     }
     stages {
-        stage('Testing') { 
+        stage('Build') { 
             steps {
-                sh 'npm install'
+                sh 'rm -rf node_modules'
+                sh 'npm install' 
+                sh 'npm run build:electron:linux'
             }
         }
     }
