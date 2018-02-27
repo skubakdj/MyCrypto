@@ -51,7 +51,7 @@ async function build() {
         category: 'Finance',
         compression
       },
-      publish: false
+      // publish: 'never',
       // publish: {
         // provider: 'github',
         // owner: 'MyCryptoHQ',
