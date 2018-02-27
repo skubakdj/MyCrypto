@@ -51,12 +51,12 @@ async function build() {
         category: 'Finance',
         compression
       },
-      publish: {
-        provider: 'github',
-        owner: 'MyCryptoHQ',
-        repo: 'MyCrypto',
-        vPrefixedTagName: false
-      },
+      // publish: {
+        // provider: 'github',
+        // owner: 'MyCryptoHQ',
+        // repo: 'MyCrypto',
+        // vPrefixedTagName: false
+      // },
       // IMPORTANT: Prevents extending configs in node_modules
       extends: null
     }
