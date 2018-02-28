@@ -51,6 +51,7 @@ async function build() {
         category: 'Finance',
         compression
       },
+      publish: null,
       // publish: 'never',
       // publish: {
         // provider: 'github',
