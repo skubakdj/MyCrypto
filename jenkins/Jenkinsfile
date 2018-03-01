@@ -11,10 +11,13 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
-                sh 'npm run printenv'
                 sh 'rm -rf node_modules'
                 sh 'npm install' 
                 sh 'npm run build:electron:linux'
+                sh 'pwd'
+                sh 'cp -r ./dist/electron-builds ~/jenkinsOut/linux'
+                sh 'npm run build:electron:windows'
+                sh 'cp -r ./dist/electron-builds ~/jenkinsOut/windows'
             }
         }
     }
