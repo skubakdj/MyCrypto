@@ -18,9 +18,9 @@ pipeline {
                 sh 'pwd'
                 sh 'ls /'
                 sh 'ls /hostHome'
-                sh 'cp -r ./dist/electron-builds /hostHome/jenkinsOut/linux'
+                sh 'cp -r ./dist/electron-builds /hostHome/danny/jenkinsOut/linux'
                 sh 'npm run build:electron:windows'
-                sh 'cp -r ./dist/electron-builds /hostHome/jenkinsOut/windows'
+                sh 'cp -r ./dist/electron-builds /hostHome/danny/jenkinsOut/windows'
             }
         }
     }
