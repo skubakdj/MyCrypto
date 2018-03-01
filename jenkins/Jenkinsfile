@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
-            args '-v $HOME:/hostHome'
+            args '-v /home:/hostHome'
         }
     }
     stages {
