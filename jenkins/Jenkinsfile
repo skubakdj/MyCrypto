@@ -3,6 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
+            args '-v $HOME:/hostHome'
         }
     }
     stages {
@@ -15,9 +16,9 @@ pipeline {
                 sh 'npm install' 
                 sh 'npm run build:electron:linux'
                 sh 'pwd'
-                sh 'cp -r ./dist/electron-builds ~/jenkinsOut/linux'
+                sh 'cp -r ./dist/electron-builds /hostHome/jenkinsOut/linux'
                 sh 'npm run build:electron:windows'
-                sh 'cp -r ./dist/electron-builds ~/jenkinsOut/windows'
+                sh 'cp -r ./dist/electron-builds /hostHome/jenkinsOut/windows'
             }
         }
     }
