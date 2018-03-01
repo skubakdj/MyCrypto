@@ -3,7 +3,6 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
-            fakeAssThing 'more/Fake/Stuff'
         }
     }
     stages {
