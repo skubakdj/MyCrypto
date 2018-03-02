@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
-            args '-v /home:/hostHome'
+            args '-v /home:/hostHome --env TEST_VAR=$TEST_VAR'
         }
     }
     stages {
@@ -12,6 +12,7 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'npm run printenv'
                 sh 'rm -rf node_modules'
                 sh 'npm install' 
                 sh 'npm run build:electron:linux'
