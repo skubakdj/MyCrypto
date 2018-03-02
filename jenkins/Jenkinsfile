@@ -12,9 +12,11 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'whoami'
                 sh 'echo $PATH'
                 sh 'which python'
                 sh 'which pip'
+                sh 'which aws'
                 sh 'aws --version'
                 sh 'npm run printenv'
                 sh 'rm -rf node_modules'
