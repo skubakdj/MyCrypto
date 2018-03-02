@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
-            args '-v /home:/hostHome --env TEST_VAR=$TEST_VAR --user="builder"'
+            args '-v /home:/hostHome --env TEST_VAR=$TEST_VAR'
         }
     }
     stages {
