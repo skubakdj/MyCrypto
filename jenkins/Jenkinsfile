@@ -12,6 +12,7 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'echo $PATH'
                 sh 'which python'
                 sh 'which pip'
                 sh 'aws --version'
