@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf
 RUN useradd -ms /bin/bash builder
 USER builder
 WORKDIR /home/builder
+ENV HOME /home/builder
 
 RUN pip install awscli --upgrade --user
 
