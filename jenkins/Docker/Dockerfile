@@ -4,7 +4,7 @@ RUN mkdir /hostHome
 
 RUN apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake libtool
 
-RUN pip install awscli --upgrade --user
+# RUN pip install awscli --upgrade --user
 
 
 # VOLUME ["/appDir"]
