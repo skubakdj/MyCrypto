@@ -12,9 +12,10 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'aws --version'
                 sh 'npm run printenv'
                 sh 'rm -rf node_modules'
-                sh 'npm install' 
+                sh 'npm install'
                 sh 'npm run build:electron:linux'
                 sh 'pwd'
                 sh 'ls /'
