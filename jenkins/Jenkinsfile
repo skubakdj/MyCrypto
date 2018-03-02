@@ -12,6 +12,8 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
+                sh 'which python'
+                sh 'which pip'
                 sh 'aws --version'
                 sh 'npm run printenv'
                 sh 'rm -rf node_modules'
