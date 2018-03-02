@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf
 
 RUN pip install awscli --upgrade --user
 
+ENV PATH "$PATH:~/.local/bin"
 
 # VOLUME ["/appDir"]
 
