@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'jenkins/Docker'
-            args '-v /home:/hostHome --env TEST_VAR=$TEST_VAR'
+            args '-v /home:/hostHome --env ETH_SIGNING_KEY=$ETH_SIGNING_KEY'
         }
     }
     stages {
@@ -12,22 +12,14 @@ pipeline {
                 ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1
             }
             steps {
-                sh 'whoami'
-                sh 'echo $PATH'
-                sh 'which python'
-                sh 'which pip'
-                sh 'which aws'
-                sh 'aws --version'
-                sh 'npm run printenv'
                 sh 'rm -rf node_modules'
                 sh 'npm install'
-                sh 'npm run build:electron:linux'
-                sh 'pwd'
-                sh 'ls /'
-                sh 'ls /hostHome'
-                sh 'cp -r ./dist/electron-builds /hostHome/danny/jenkinsOut/linux'
-                sh 'npm run build:electron:windows'
-                sh 'cp -r ./dist/electron-builds /hostHome/danny/jenkinsOut/windows'
+                sh 'npm run jenkins:electron:linux'
+            }
+        }
+        stage('Upload') {
+            steps {
+                sh 'npm run jenkins:electron:postBuild'
             }
         }
     }
