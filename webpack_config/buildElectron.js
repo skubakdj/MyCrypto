@@ -49,6 +49,7 @@ async function build() {
       },
       linux: {
         category: 'Finance',
+        icon: path.join(config.path.electron, 'icons/icon.ico'),        
         compression
       },
       publish: null,
