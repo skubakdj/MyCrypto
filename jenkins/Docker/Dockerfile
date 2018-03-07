@@ -1,4 +1,4 @@
-FROM electronuserland/builder:wine
+FROM electronuserland/builder:wine-02.18
 
 
 
