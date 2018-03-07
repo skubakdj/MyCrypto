@@ -85,7 +85,7 @@ const genManifest = (
   gitCommitShort,
   s3Bucket
 ) => fileList.map(filename => {
-  const fullPath = path.resolve('../dist/electron-builds/', filename)
+  const fullPath = path.resolve('dist/electron-builds/', filename)
   const commitFilename = genCommitFilename(filename, version, gitCommitShort, jenkinsBuildId)
 
   return {
