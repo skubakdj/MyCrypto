@@ -17,10 +17,5 @@ pipeline {
                 sh 'npm run jenkins:electron:linux'
             }
         }
-        stage('Upload') {
-            steps {
-                sh 'npm run jenkins:electron:postBuild'
-            }
-        }
     }
 }
