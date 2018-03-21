@@ -161,6 +161,7 @@
     "SEND_trans": "Send Transaction ",
     "SCHEDULE_block": "Block ",
     "SCHEDULE_block_placeholder": "Enter block number ",
+    "SCHEDULE_bounty": "Bounty for execution ",
     "SCHEDULE_schedule": "Schedule transaction ",
     "SENDModal_Title": "Warning! ",
     "SENDModal_Content_1": "You are about to send ",
