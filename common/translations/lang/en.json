@@ -162,6 +162,7 @@
     "SCHEDULE_block": "Block ",
     "SCHEDULE_block_placeholder": "Enter block number ",
     "SCHEDULE_timestamp": "Date & Time ",
+    "SCHEDULE_timezone": "Timezone ",
     "SCHEDULE_bounty": "Bounty for execution ",
     "SCHEDULE_check": "Check on Chronos ",
     "SCHEDULE_schedule": "Schedule transaction ",
