@@ -111,6 +111,8 @@
     "SCHEDULE_timebounty_placeholder": "Enter Time Bounty ",
     "SCHEDULE_bounty": "Bounty for execution ",
     "SCHEDULE_check": "Check on Chronos ",
+    "SCHEDULE_type_time": "Time ",
+    "SCHEDULE_type_block": "Block ",
     "SCHEDULE_schedule": "Schedule transaction ",
     "SENDModal_Title": "Warning! ",
     "SENDModal_Content_1": "You are about to send ",
