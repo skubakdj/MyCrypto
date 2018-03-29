@@ -103,6 +103,7 @@
     "SCAN_TOKENS": "Scan For Tokens",
     "SCAN_TOKENS_FAIL": "Failed to fetch token values",
     "SCAN_TOKENS_FAIL_NO_TOKENS": "No tokens found",
+    "SCHEDULING_TOGGLE": "Scheduled ",
     "SCHEDULE_BLOCK": "Block Number ",
     "SCHEDULE_BLOCK_PLACEHOLDER": "Enter Block Number ",
     "SCHEDULE_timestamp": "Date & Time ",
