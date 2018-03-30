@@ -114,6 +114,8 @@
     "SCHEDULE_SCHEDULE": "Schedule transaction ",
     "SCHEDULE_TYPE_TIME": "Time ",
     "SCHEDULE_TYPE_BLOCK": "Block ",
+    "SCHEDULE_GAS_PRICE": "Future Gas Price",
+    "SCHEDULE_GAS_LIMIT": "Future Gas Limit",
     "SCHEDULE_WINDOW_SIZE_BLOCKS": "Window (blocks) ",
     "SCHEDULE_WINDOW_SIZE_TIME": "Window (minutes) ",
     "SCHEDULE_WINDOW_SIZE_PLACEHOLDER": "Enter Window Size",
