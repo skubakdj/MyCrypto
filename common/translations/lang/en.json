@@ -119,7 +119,7 @@
     "SCHEDULE_GAS_PRICE": "Future Gas Price",
     "SCHEDULE_GAS_LIMIT": "Future Gas Limit",
     "SCHEDULE_WINDOW_SIZE_BLOCKS": "Window (blocks) ",
-    "SCHEDULE_WINDOW_SIZE_TIME": "Window (minutes) ",
+    "SCHEDULE_WINDOW_SIZE_TIME": "Window (min) ",
     "SCHEDULE_WINDOW_SIZE_PLACEHOLDER": "Enter Window Size",
     "SEND_GAS": "Gas ",
     "SEND_TRANSFERTOTAL": "Send Entire Balance ",
