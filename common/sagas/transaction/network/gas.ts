@@ -14,12 +14,8 @@ import BN from 'bn.js';
 import { INode } from 'libs/nodes/INode';
 import { getNodeLib, getOffline, getAutoGasLimitEnabled } from 'selectors/config';
 import { getWalletInst } from 'selectors/wallet';
-import {
-  getTransaction,
-  IGetTransaction,
-  getCurrentToAddressMessage,
-  getSchedulingToggle
-} from 'selectors/transaction';
+import { getTransaction, IGetTransaction, getCurrentToAddressMessage } from 'selectors/transaction';
+import { getSchedulingToggle } from 'containers/Tabs/ScheduleTransaction/selectors/fields';
 import {
   EstimateGasRequestedAction,
   setGasLimitField,
