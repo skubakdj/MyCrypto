@@ -17,6 +17,17 @@ function shouldBuildOs(os) {
   }
 }
 
+const fileTesters = []
+const LINUX_FILE_TESTER = /^.*AppImage$/
+const WINDOWS_FILE_TESTER = /^.*exe$/
+const MAC_FILE_TESTER = /^.*dmg$/
+
+shouldBuildOs('linux') && fileTesters.push(LINUX_FILE_TESTER)
+shouldBuildOs('windows') && fileTesters.push(WINDOWS_FILE_TESTER)
+shouldBuildOs('mac') && fileTesters.push(MAC_FILE_TESTER)
+
+console.log('fileTesters', fileTesters);
+
 async function build() {
   console.log('Beginning Electron build process...');
   const jsBuildDir = path.join(config.path.output, 'electron-js');
@@ -66,6 +77,15 @@ async function build() {
       extends: null
     }
   });
+
+  // Fail build if expected files aren't produced
+  const lsBuildsDir = fs.readdirSync(electronBuildsDir)
+  for (const fileTest in fileTesters) {
+    const found = lsBuildsDir.find(file => fileTest.test(file))
+    if (!found) {
+      throw new Error(`No file found matching ${fileTest} in ${lsBuildsDir}`)
+    }
+  }
 
   console.info(`Electron builds are finished! Available at ${electronBuildsDir}`);
 }
