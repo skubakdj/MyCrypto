@@ -29,11 +29,15 @@ install:
 #    - stage: test
 #      script: npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate
 
+
+env: 
+ - COMMAND="npm run prettier:diff"
+ - COMMAND="npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
+ - COMMAND="npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate"
+
 script:
-  - "npm run prettier:diff"
-  - "npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
-  - "npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate"
-  
+  - "$COMMAND"
+
 notifications:
   email:
     on_success: never
