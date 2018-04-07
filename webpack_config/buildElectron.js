@@ -17,17 +17,6 @@ function shouldBuildOs(os) {
   }
 }
 
-const fileTesters = []
-const LINUX_FILE_TESTER = /^.*AppImage$/
-const WINDOWS_FILE_TESTER = /^.*exe$/
-const MAC_FILE_TESTER = /^.*dmg$/
-
-shouldBuildOs('linux') && fileTesters.push(LINUX_FILE_TESTER)
-shouldBuildOs('windows') && fileTesters.push(WINDOWS_FILE_TESTER)
-shouldBuildOs('mac') && fileTesters.push(MAC_FILE_TESTER)
-
-console.log('fileTesters', fileTesters);
-
 async function build() {
   console.log('Beginning Electron build process...');
   const jsBuildDir = path.join(config.path.output, 'electron-js');
@@ -44,50 +33,47 @@ async function build() {
   );
 
   console.log('Building...');
-  await builder.build({
-    mac: shouldBuildOs('mac') ? ['zip', 'dmg'] : undefined,
-    win: shouldBuildOs('windows') ? ['nsis'] : undefined,
-    linux: shouldBuildOs('linux') ? ['AppImage'] : undefined,
-    x64: true,
-    ia32: true,
-    config: {
-      appId: 'com.github.mycrypto.mycryptohq',
-      productName: 'MyCrypto',
-      directories: {
-        app: jsBuildDir,
-        output: electronBuildsDir
-      },
-      mac: {
-        category: 'public.app-category.finance',
-        icon: path.join(config.path.electron, 'icons/icon.icns'),
-        compression
-      },
-      win: {
-        icon: path.join(config.path.electron, 'icons/icon.ico'),
-        compression
-      },
-      linux: {
-        category: 'Finance',
-        icon: path.join(config.path.electron, 'icons/icon.png'),
-        compression
-      },
-      // IMPORTANT: Prevents from auto publishing to GitHub in CI environments
-      publish: null,
-      // IMPORTANT: Prevents extending configs in node_modules
-      extends: null
-    }
-  });
+  try {
+    await builder.build({
+      mac: shouldBuildOs('mac') ? ['zip', 'dmg'] : undefined,
+      win: shouldBuildOs('windows') ? ['nsis'] : undefined,
+      linux: shouldBuildOs('linux') ? ['AppImage'] : undefined,
+      x64: true,
+      ia32: true,
+      config: {
+        appId: 'com.github.mycrypto.mycryptohq',
+        productName: 'MyCrypto',
+        directories: {
+          app: jsBuildDir,
+          output: electronBuildsDir
+        },
+        mac: {
+          category: 'public.app-category.finance',
+          icon: path.join(config.path.electron, 'icons/icon.icns'),
+          compression
+        },
+        win: {
+          icon: path.join(config.path.electron, 'icons/icon.ico'),
+          compression
+        },
+        linux: {
+          category: 'Finance',
+          icon: path.join(config.path.electron, 'icons/icon.png'),
+          compression
+        },
+        // IMPORTANT: Prevents from auto publishing to GitHub in CI environments
+        publish: null,
+        // IMPORTANT: Prevents extending configs in node_modules
+        extends: null
+      }
+    });
 
-  // Fail build if expected files aren't produced
-  const lsBuildsDir = fs.readdirSync(electronBuildsDir)
-  for (const fileTest in fileTesters) {
-    const found = lsBuildsDir.find(file => fileTest.test(file))
-    if (!found) {
-      throw new Error(`No file found matching ${fileTest} in ${lsBuildsDir}`)
-    }
+    console.info(`Electron builds are finished! Available at ${electronBuildsDir}`);
+
+  } catch(err) {
+    console.error(err);
+    process.exit(1);
   }
-
-  console.info(`Electron builds are finished! Available at ${electronBuildsDir}`);
 }
 
 build();
