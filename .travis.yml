@@ -5,6 +5,11 @@ language: node_js
 cache:
   directories:
     - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
 
 services:
   - docker
@@ -13,21 +18,75 @@ before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-# uncomment once integration tests are included in CI
-#  - docker pull dternyak/eth-priv-to-addr:latest
-  - sudo apt-get install libusb-1.0
-  
-install:
-  - npm install --silent
+  - docker pull electronuserland/builder:wine-03.18
 
-jobs:
-  include:
-    - stage: test
-      script: npm run prettier:diff
-    - stage: test
-      script: npm run test:coverage -- --maxWorkers=2 && npm run report-coverage
-    - stage: test
-      script: npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate
+install: true
+
+  # uncomment once integration tests are included in CI
+  # - docker pull dternyak/eth-priv-to-addr:latest
+
+  # add wine repo
+  # - sudo dpkg --add-architecture i386 
+  # - wget -nc https://dl.winehq.org/wine-builds/Release.key
+  # - sudo apt-key add Release.key
+  # - sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+
+  # install dependencies
+  # - sudo apt-get update
+  # - sudo apt-get install --install-recommends winehq-stable
+  # - sudo apt-get install libusb-1.0 nasm graphicsmagick
+  # - sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
+  # - |
+    # if [ -d "node_modules"]; then
+      # sudo chown $USER node_modules -R 
+    # fi
+  
+# install:
+  # - yarn --silent
+
+#jobs:
+#  include:
+#    - stage: test
+#      script: npm run prettier:diff
+#    - stage: test
+#      script: npm run test:coverage -- --maxWorkers=2 && npm run report-coverage
+#    - stage: test
+#      script: npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate
+
+
+env: 
+  - COMMAND="test"
+  - COMMAND="build"
+
+# - COMMAND="npm run prettier:diff"
+# - COMMAND="npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
+# - COMMAND="npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate"
+
+# script:
+  # - "npm run ci:$COMMAND"
+
+script:
+  - |
+    docker run --rm \
+      -v ${PWD}:/project \
+      -v ~/.cache/electron:/root/.cache/electron \
+      -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+      electronuserland/builder:wine-03.18 \
+      /bin/bash -c "apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake libtool && yarn && npm run ci:$COMMAND"
+
+
+# script:
+#   - |
+#     if [ "$COMMAND" == "build" ]; then
+#       docker run --rm \
+#         -v ${PWD}:/project \
+#         -v ~/.cache/electron:/root/.cache/electron \
+#         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+#         electronuserland/builder:wine-03.18 \
+#         /bin/bash -c "apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake libtool && npm run ci:build"
+#     else
+#       npm run ci:test
+#     fi
 
 notifications:
   email:
