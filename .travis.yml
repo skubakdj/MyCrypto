@@ -27,6 +27,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install --install-recommends winehq-stable
   - sudo apt-get install libusb-1.0 nasm graphicsmagick
+  - sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
   
 install:
   - yarn --silent
