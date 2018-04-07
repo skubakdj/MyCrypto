@@ -67,7 +67,7 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine-03.18 \
-        /bin/bash -c "sudo apt-get update && sudo apt-get install libusb-1.0 nasm graphicsmagick && npm run ci:build"
+        /bin/bash -c "apt-get update && apt-get install libusb-1.0 nasm graphicsmagick && npm run ci:build"
     else
       npm run ci:test
     fi
