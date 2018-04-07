@@ -35,7 +35,7 @@ before_install:
   # - sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
   
 install:
-  - yarn --silent
+  - sudo yarn --silent
 
 #jobs:
 #  include:
