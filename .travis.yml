@@ -31,8 +31,8 @@ install:
 
 
 env: 
-  COMMAND="test"
-  COMMAND="build"
+  - COMMAND="test"
+  - COMMAND="build"
 
 # - COMMAND="npm run prettier:diff"
 # - COMMAND="npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
