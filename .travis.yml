@@ -15,7 +15,13 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 # uncomment once integration tests are included in CI
 #  - docker pull dternyak/eth-priv-to-addr:latest
-  - sudo apt-get install libusb-1.0 nasm graphicsmagick wine
+  - sudo apt-get install libusb-1.0 nasm graphicsmagick
+
+  # install wine
+  - wget -nc https://dl.winehq.org/wine-builds/Release.key
+  - sudo apt-key add Release.key
+  - sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+  - sudo apt-get install --install-recommends winehq-stable
   
 install:
   - yarn --silent
