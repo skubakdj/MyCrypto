@@ -31,12 +31,15 @@ install:
 
 
 env: 
- - COMMAND="npm run prettier:diff"
- - COMMAND="npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
- - COMMAND="npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate"
+  COMMAND="test"
+  COMMAND="build"
+
+# - COMMAND="npm run prettier:diff"
+# - COMMAND="npm run test:coverage -- --maxWorkers=2 && npm run report-coverage"
+# - COMMAND="npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate"
 
 script:
-  - "$COMMAND"
+  - "npm run ci:$COMMAND"
 
 notifications:
   email:

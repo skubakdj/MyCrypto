@@ -171,7 +171,12 @@
     "precommit": "lint-staged",
     "formatAll": "find ./common/ -name '*.ts*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override",
     "prettier:diff": "prettier --write --config ./.prettierrc --list-different \"common/**/*.ts\" \"common/**/*.tsx\"",
-    "prepush": "npm run tslint && npm run tscheck"
+    "prepush": "npm run tslint && npm run tscheck",
+    "ci:test": "npm run ci:test:a && npm run ci:test:b && npm run ci:test:c",
+    "ci:test:a": "npm run prettier:diff",
+    "ci:test:b": "npm run test:coverage -- --maxWorkers=2 && npm run report-coverage",
+    "ci:test:c": "npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate",
+    "ci:build": "npm run build:electron"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
