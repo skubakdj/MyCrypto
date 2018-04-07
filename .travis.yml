@@ -29,17 +29,17 @@ before_install:
   # - sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
 
   # install dependencies
-  - sudo apt-get update
+  # - sudo apt-get update
   # - sudo apt-get install --install-recommends winehq-stable
-  - sudo apt-get install libusb-1.0 nasm graphicsmagick
+  # - sudo apt-get install libusb-1.0 nasm graphicsmagick
   # - sudo apt-get install --no-install-recommends -y gcc-multilib g++-multilib
-  - |
-    if [ -d "node_modules"]; then
-      sudo chown $USER node_modules -R 
-    fi
+  # - |
+    # if [ -d "node_modules"]; then
+      # sudo chown $USER node_modules -R 
+    # fi
   
-install:
-  - yarn --silent
+# install:
+  # - yarn --silent
 
 #jobs:
 #  include:
@@ -64,16 +64,26 @@ env:
 
 script:
   - |
-    if [ "$COMMAND" == "build" ]; then
-      docker run --rm \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine-03.18 \
-        /bin/bash -c "apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick && npm run ci:build"
-    else
-      npm run ci:test
-    fi
+    docker run --rm \
+      -v ${PWD}:/project \
+      -v ~/.cache/electron:/root/.cache/electron \
+      -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+      electronuserland/builder:wine-03.18 \
+      /bin/bash -c "apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake libtool && yarn && npm run ci:$COMMAND"
+
+
+# script:
+#   - |
+#     if [ "$COMMAND" == "build" ]; then
+#       docker run --rm \
+#         -v ${PWD}:/project \
+#         -v ~/.cache/electron:/root/.cache/electron \
+#         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+#         electronuserland/builder:wine-03.18 \
+#         /bin/bash -c "apt-get update && apt-get install -y libusb-1.0 nasm graphicsmagick autoconf automake libtool && npm run ci:build"
+#     else
+#       npm run ci:test
+#     fi
 
 notifications:
   email:
