@@ -11,7 +11,7 @@
         },
         "prod": {
             "gitUrl": "git@github.com:skubakdj/MyCrypto.git",
-            "distFolder": "docs",
+            "distFolder": "",
 	    "defaultBranch": "gh-pages"
         }
     }
