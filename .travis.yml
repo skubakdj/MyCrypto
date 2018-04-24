@@ -1,6 +1,6 @@
 # dist: trusty
 # sudo: required
-# language: node_js
+language: node_js
 
 
 
@@ -13,8 +13,8 @@ matrix:
   include:
     - os: osx
       osx_image: xcode9.3
-      language: node_js
-      node_js: "9"
+      # language: node_js
+      # node_js: "9"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -22,7 +22,7 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      language: node_js
+      # language: node_js
       services: docker
 # language: generic
 
