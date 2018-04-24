@@ -58,15 +58,15 @@ install:
 
 jobs:
   include:
-    - stage: test
+    - stage: prettier
       script: npm run prettier:diff
       # if: env(TRAVIS_OS_NAME)=linux
       os: linux
-    - stage: test
+    - stage: test-coverage
       script: npm run test:coverage -- --maxWorkers=2 && npm run report-coverage
       # if: env(TRAVIS_OS_NAME)=linux
       os: linux
-    - stage: test
+    - stage: tests
       script: npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate
       # if: env(TRAVIS_OS_NAME)=linux
       os: linux
