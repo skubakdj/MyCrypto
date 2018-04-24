@@ -54,7 +54,7 @@ before_install:
 
   
 install:
-  - npm install --silent
+  - yarn --silent
 
 jobs:
   include:
