@@ -1,20 +1,10 @@
-# dist: trusty
-# sudo: required
+
 language: node_js
-
-
-
-
-# os:
-  # - linux
-  # - osx
 
 matrix:
   include:
     - os: osx
       osx_image: xcode9.3
-      # language: node_js
-      # node_js: "9"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -22,10 +12,7 @@ matrix:
     - os: linux
       dist: trusty
       sudo: required
-      # language: node_js
       services: docker
-# language: generic
-
 
 cache:
   yarn: true
@@ -80,24 +67,6 @@ script:
       ls -la dist/electron-builds
     fi
 
-# jobs:
-#   include:
-#     - stage: prettier
-#       script: npm run prettier:diff
-#       os: linux
-
-#     - stage: test-coverage
-#       script: npm run test:coverage -- --maxWorkers=2 && npm run report-coverage
-#       os: linux
-
-#     - stage: tests
-#       script: npm run tslint && npm run tscheck && npm run freezer && npm run freezer:validate
-#       os: linux
-
-#     - stage: electron
-#       script: npm run build:electron
-#       os: osx
-      
 notifications:
   email:
     on_success: never
