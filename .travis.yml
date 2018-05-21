@@ -27,8 +27,6 @@ before_cache:
       rm -rf $HOME/.cache/electron-builder/wine
     fi
 
-services:
-  - docker
 
 before_install:
   - |
