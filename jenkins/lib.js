@@ -18,7 +18,11 @@ const genCommitFilename = (name, version, commit, buildId, isCodeSigning) => {
 
 const genFileList = (linux, windows, osx) => {
   const { platform } = process;
-  if (platform === 'linux') {
+  const { MYCRYPTO_ELECTRON_ALL_PLATFORMS } = process.env; 
+ 
+  if (MYCRYPTO_ELECTRON_ALL_PLATFORMS) {
+    return [...osx, ...windows, ...linux]
+  } else if (platform === 'linux') {
     return [...linux, ...windows];
   } else if (platform === 'darwin') {
     return [...osx];

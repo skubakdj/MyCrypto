@@ -12,6 +12,8 @@ function shouldBuildOs(os) {
     return os === 'linux' || os === 'windows';
   } else if (ELECTRON_OS === 'JENKINS_MAC') {
     return os === 'mac';
+  } else if (ELECTRON_OS === 'JENKINS_ALL') {
+    return true;
   } else {
     return !process.env.ELECTRON_OS || process.env.ELECTRON_OS === os;
   }

@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        node {
+            label 'master'
+        }
+    }
+    stages {
+        stage('Install') { 
+            environment {
+                AWS_ACCESS_KEY_ID = 'REDACTED'
+                AWS_SECRET_ACCESS_KEY = 'REDACTED'
+                ETH_SIGNING_KEY = 'REDACTED'
+                S3_BUCKET_NAME = 'REDACTED'
+            }
+            steps {
+                sh 'rm -rf node_modules'
+                sh 'yarn'
+            }
+        }
+        stage('Build') {
+            environment {
+                ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES = 1   
+                AWS_ACCESS_KEY_ID = 'REDACTED'
+                AWS_SECRET_ACCESS_KEY = 'REDACTED'
+                ETH_SIGNING_KEY = 'REDACTED'
+                S3_BUCKET_NAME = 'REDACTED'
+            }
+            steps {
+                sh 'npm run jenkins:build:all'
+            }
+        }
+        stage('Upload') {
+            environment {
+                MYCRYPTO_ELECTRON_ALL_PLATFORMS = 'true'
+            }
+            steps {
+                sh 'npm run jenkins:upload'
+            }
+        }
+    }
+}
